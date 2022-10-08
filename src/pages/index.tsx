@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import type { NextPage } from 'next'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (
@@ -12,10 +12,13 @@ const Home: NextPage = () => {
       <main className="flex flex-col items-center min-h-screen bg-slate-700 text-white w-full gap-4 pt-4">
         <h1 className="text-2xl">Knowledge Base</h1>
         <h2 className="text-xl">About us</h2>
-        <p text-lg>We are a minecraft technical community that is dedicated on making the datapack scene more accessible to newcomers</p>
+        <p text-lg>
+          We are a minecraft technical community that is dedicated on making the datapack scene more
+          accessible to newcomers
+        </p>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

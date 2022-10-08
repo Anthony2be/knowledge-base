@@ -1,14 +1,13 @@
-import { trpc } from "../../utils/trpc";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import Markdown from "../../components/markdown";
-
+import { trpc } from '../../utils/trpc'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import Markdown from '../../components/markdown'
 
 export default function Component() {
   const router = useRouter()
   const { id } = router.query
 
-  const { data: post } = trpc.post.getOne.useQuery({ id: id as string });
+  const { data: post } = trpc.post.getOne.useQuery({ id: id as string })
 
   return (
     <>
@@ -17,5 +16,5 @@ export default function Component() {
       <p>{post?.author.name}</p>
       <img src={post?.author.image as string} alt="author image" />
     </>
-  );
+  )
 }

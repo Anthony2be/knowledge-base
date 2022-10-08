@@ -1,5 +1,5 @@
-import { t, protectedProcedure } from "../trpc";
-import { z } from "zod";
+import { t, protectedProcedure } from '../trpc'
+import { z } from 'zod'
 
 export const postRouter = t.router({
   getAll: t.procedure.query(({ ctx }) => {
@@ -7,27 +7,25 @@ export const postRouter = t.router({
       include: {
         author: true,
       },
-    });
+    })
   }),
-  getOne: t.procedure
-    .input(z.object({ id: z.string() }))
-    .query(async ({ ctx, input }) => {
-      return await ctx.prisma.post.findUnique({
-        where: {
-          id: input.id,
-        },
-        include: {
-          author: true,
-        },
-      });
-    }),
+  getOne: t.procedure.input(z.object({ id: z.string().cuid() })).query(async ({ ctx, input }) => {
+    return await ctx.prisma.post.findUnique({
+      where: {
+        id: input.id,
+      },
+      include: {
+        author: true,
+      },
+    })
+  }),
   create: protectedProcedure
     .input(
       z.object({
         title: z.string(),
         content: z.string(),
         published: z.boolean(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       return await ctx.prisma.post.create({
@@ -38,18 +36,18 @@ export const postRouter = t.router({
           author: {
             connect: {
               id: ctx.session.user?.id,
-            }
-          }
-        }
-      });
+            },
+          },
+        },
+      })
     }),
   delete: protectedProcedure
-    .input(z.object({ id: z.string() }))
+    .input(z.object({ id: z.string().cuid() }))
     .mutation(async ({ ctx, input }) => {
       return await ctx.prisma.post.delete({
         where: {
-          id: input.id
-        }
+          id: input.id,
+        },
       })
-    })
-});
+    }),
+})

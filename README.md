@@ -191,18 +191,18 @@ You can also use docker compose to build the image and run the container.
    <summary>docker-compose.yml</summary>
 
    ```yaml
-   version: "3.9"
+   version: '3.9'
    services:
      app:
-       platform: "linux/amd64"
+       platform: 'linux/amd64'
        build:
          context: .
          dockerfile: Dockerfile
          args:
-           NEXT_PUBLIC_CLIENTVAR: "clientvar"
+           NEXT_PUBLIC_CLIENTVAR: 'clientvar'
        working_dir: /app
        ports:
-         - "3000:3000"
+         - '3000:3000'
        image: t3-app
        environment:
          - DATABASE_URL=database_url_goes_here
@@ -226,4 +226,5 @@ Here are some useful references you can further look into:
 Here are some resources that we commonly refer to:
 
 - [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
+
 #
