@@ -62,13 +62,14 @@ model VerificationToken {
 }
 
 model Post {
-    id        String    @id @default(cuid())
-    title     String
-    content   String
-    published Boolean
-    author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
-    authorId  String
-    comments  Comment[]
+    id          String    @id @default(cuid())
+    title       String
+    content     String
+    description String
+    author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId    String
+    comments    Comment[]
+    catergories Category[]
 }
 
 model Comment {
@@ -78,4 +79,10 @@ model Comment {
     authorId String
     post     Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
     postId   String
+}
+
+model Category {
+    id    String @id @default(cuid())
+    name  String @unique
+    posts Post[]
 }

@@ -5,11 +5,13 @@ export const userRouter = t.router({
   getAll: t.procedure.query(({ ctx }) => {
     return ctx.prisma.user.findMany()
   }),
-  getOne: t.procedure.input(z.object({ id: z.string().cuid() })).query(({ ctx, input }) => {
-    return ctx.prisma.user.findUnique({
-      where: {
-        id: input.id,
-      },
-    })
-  }),
+  getOne: t.procedure
+    .input(z.object({ id: z.string().cuid() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.user.findUnique({
+        where: {
+          id: input.id,
+        },
+      })
+    }),
 })
